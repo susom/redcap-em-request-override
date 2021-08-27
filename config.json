@@ -1,0 +1,49 @@
+{
+    "name": "RequestActivationOverride",
+    "namespace": "Stanford\\RequestActivationOverride",
+    "description": "An EM that allows discoverable External Modules to be requested for activation on a project",
+    "documentation": "README.md",
+    "authors": [
+        {
+            "name": "Jordan Schultz",
+            "email": "jmschult@stanford.edu",
+            "institution": "Stanford Medicine"
+        }
+    ],
+    "permissions": [
+        "redcap_every_page_top",
+        "redcap_control_center"
+    ],
+    "enable-every-page-hooks-on-system-pages": true,
+    "links": {
+        "project": [
+        ],
+        "control-center": [
+        ]
+    },
+    "no-auth-pages": [
+    ],
+    "project-settings": [
+    ],
+    "system-settings": [
+        {
+            "key": "enable-system-debug-logging",
+            "name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
+            "required": false,
+            "type": "checkbox"
+        },
+        {
+            "key": "redcap-survey-redirect",
+            "name": "<b>URL of survey to redirect to, should be in the form http://REDCap/surveys/?s=abcdefghijk",
+            "required": false,
+            "type": "text"
+        }
+
+    ],
+    "compatibility": {
+        "php-version-min": "7.0",
+        "php-version-max": "",
+        "redcap-version-min": "",
+        "redcap-version-max": ""
+    }
+}
