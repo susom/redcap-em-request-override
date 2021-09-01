@@ -14,6 +14,7 @@ const modUI = {
 
                         if (EMTableRendered) { // External modules table is rendered, alter functionality
                             modUI.alterHTML();
+                            modUI.appendFinanceText();
                             // observer.disconnect();
                         }
                     }
@@ -36,15 +37,35 @@ const modUI = {
         let redirect = $('#redirect-uri').attr('redirect-uri');
 
         button.on('click', function (event) {
-            redirect = null;
-            if (redirect)
+            if (redirect) {
                 window.location.href = redirect;
-            else
-                $('.modal-body').prepend("<div class='alert alert-danger' role='alert'>Error: No redirect URI present, please ensure redcap-survey-redirect is not empty</div>")
-
+            } else {
+                if ($('.modal-body').find('.alert').length === 0) {
+                    $('.modal-body').prepend("<div id='alert-focus' class='alert alert-danger' role='alert'>Error: No redirect URI present, please ensure redcap-survey-redirect is not empty</div>")
+                }
+                $(this).removeClass('btn-success');
+                $(this).addClass('btn-danger');
+            }
             event.preventDefault();
         })
         $(this.baseModal).find('.external-modules-action-buttons').html(element);
+    },
+
+    appendFinanceText() {
+        let tr = $("#external-modules-disabled-table").find("tr");
+        for (let item of tr) {
+            let em = $(item).attr('data-module');
+            if (em && em in data1) { // EM is discoverable on the modal page and it has pricing information
+                let custom = undefined;
+                let cost = `<div><p class="override">Monthly cost: $${data1[em]['actual_monthly_cost']}</p></div>`;
+
+                if (data1[em]['custom_text_override']) //If the custom text is set, create a new dom element
+                    custom = `<div><p class="override">${data1[em]['custom_text_override']}</p></div>`;
+
+                $(item).find('.external-modules-description').after(cost).after(custom);
+                $('.override').css('color', 'grey');
+            }
+        }
     }
 }
 

@@ -37,6 +37,24 @@
             "name": "<b>URL of survey to redirect to, should be in the form http://REDCap/surveys/?s=abcdefghijk",
             "required": false,
             "type": "text"
+        },
+        {
+            "key": "em-finance-pid",
+            "name": "<b>Project ID containing the cost information for external modules to be displayed to users",
+            "required": false,
+            "type": "text"
+        },
+        {
+            "key": "custom_module_field",
+            "name": "<b>Field name of any additional text to be displayed to the user in EM enable modal. This field must be present in the same project specified above.",
+            "required": false,
+            "type": "text"
+        },
+        {
+            "key": "enable_custom_module_field",
+            "name": "<b>Enables the custom module field to be displayed as additional text under External Module Cost",
+            "required": false,
+            "type": "checkbox"
         }
 
     ],
